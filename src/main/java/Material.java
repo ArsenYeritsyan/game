@@ -1,12 +1,12 @@
 import java.util.Objects;
 
-public abstract class Materials {
+public class Material {
     private String name;
     private String description;
     private String icon;
     private Integer maxCapacity;
 
-    public Materials(String name, String description, String icon, Integer maxCapacity) {
+    public Material(String name, String description, String icon, Integer maxCapacity) {
         this.name = name;
         this.description = description;
         this.icon = icon;
@@ -16,9 +16,9 @@ public abstract class Materials {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Materials)) return false;
-        Materials materials = (Materials) o;
-        return Objects.equals(name, materials.name) && Objects.equals(description, materials.description) && Objects.equals(icon, materials.icon) && Objects.equals(maxCapacity, materials.maxCapacity);
+        if (!(o instanceof Material)) return false;
+        Material material = (Material) o;
+        return Objects.equals(name, material.name) && Objects.equals(description, material.description) && Objects.equals(icon, material.icon) && Objects.equals(maxCapacity, material.maxCapacity);
     }
 
     @Override
@@ -31,8 +31,7 @@ public abstract class Materials {
         return "Materials{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", icon='" + icon + '\'' +
-                ", maxCapacity=" + maxCapacity +
+                ", icon='" + icon +
                 '}';
     }
 

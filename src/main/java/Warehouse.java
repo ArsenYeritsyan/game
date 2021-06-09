@@ -1,31 +1,32 @@
 import java.util.HashMap;
 
 public class Warehouse {
-    private HashMap<Materials,Integer> inventory;
+    private HashMap<Material,Integer> inventory;
 
     public Warehouse() {
         this.inventory = new HashMap<>();
     }
 
-    public void addMaterial (Materials material ,int quantity){
-        if(!inventory.containsKey(material)){
+    public void addMaterial (Material material , int quantity) {
+        if (!inventory.containsKey(material)) {
             inventory.put(material, quantity);
+        } else if (inventory.containsKey(material)) {
+            if (material.getMaxCapacity() > inventory.get(material) + quantity) {
+                inventory.put(material, inventory.get(material) + quantity);
+            } else {
+                inventory.put(material, material.getMaxCapacity());
+            }
         }
-        else if (inventory.containsKey(material)){
-            if (material.getMaxCapacity()> inventory.get(material))
-            inventory.put(material, quantity);
-        }else{inventory.put(material,material.getMaxCapacity());}
     }
-
-    public void deleteMaterials(Materials material) {
+    public void deleteMaterials(Material material) {
         inventory.remove(material);
     }
 
-    public HashMap<Materials, Integer> getMaterials() {
+    public HashMap<Material, Integer> getMaterials() {
         return inventory;
     }
 
-    public void setMaterials(HashMap<Materials, Integer> materials) {
+    public void setMaterials(HashMap<Material, Integer> materials) {
         this.inventory = materials;
     }
 }

@@ -1,4 +1,3 @@
-import java.util.HashSet;
 import java.util.Objects;
 
 public class Player implements PlayerOptions {
@@ -11,30 +10,32 @@ public class Player implements PlayerOptions {
         this.id = id;
         this.name = name;
         this.damage = damage;
+        this.inventory=new Warehouse();
     }
 
     @Override
     public void addWarehouse(Warehouse warehouse) {
-        for (Materials material : warehouse.getMaterials().keySet()) {
+        for (Material material : warehouse.getMaterials().keySet()) {
             this.inventory.addMaterial(material, warehouse.getMaterials().get(material));
-            System.out.println("Material : " + material + "   quantity : " + warehouse.getMaterials().get(material));
+            System.out.println(": " + material + "   quantity : " + warehouse.getMaterials().get(material));
         }
     }
 
     @Override
-    public void removeWarehouse(Warehouse warehouse){
+    public void clearWarehouse(Warehouse warehouse){
         inventory.getMaterials().clear();
     }
 
     @Override
     public void giveWarehouse(Player player) {
-
+        player.addWarehouse(this.inventory);
+        clearWarehouse(this.inventory);
     }
 
     @Override
-    public void attack(Enemy enemy) {
-            int hit = damage;
-            enemy.defend(hit);
+    public void attack(Enemy enemy,int level) {
+            damage *= level;
+            enemy.defend(damage);
         }
 
     @Override
