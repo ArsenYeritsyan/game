@@ -4,18 +4,15 @@ public class Enemy {
     private int health;
 
     public Enemy() {
-        this.health = 100;
+        this.health = 50;
     }
-    public void defense(){
-        health*=100;
+
+    public void increaseHealth(int increment){
+        health+=++increment;
     }
 
     public boolean alive() {
-        if (health > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return health > 0;
     }
     public void defend(int hit){
         this.health-=hit;

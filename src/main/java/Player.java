@@ -34,7 +34,7 @@ public class Player implements PlayerOptions {
 
     @Override
     public void attack(Enemy enemy,int level) {
-            damage *= level;
+            damage += level;
             enemy.defend(damage);
         }
 
@@ -71,10 +71,6 @@ public class Player implements PlayerOptions {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getDamage() {
